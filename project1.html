@@ -1,0 +1,260 @@
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <title>Project 1</title>
+
+</head>
+
+<body>
+  
+  <h1>Project 1 &mdash; Warm Up</h1> 
+  <h2>Team: OM NOM NOM</h2>
+  
+  <p>Question 1</p>
+  <p>It's a skyscraper! WHOOOOOO</p>
+  <canvas id="canvas-q1" height="500" width="500" style="border: 1px solid grey">
+  </canvas>
+
+  <p>Question 2</p>
+  <canvas id="canvas-q2" height="500" width="500" style="border: 1px solid grey">
+  </canvas>
+
+  <p>Question 3</p>
+  <canvas id="canvas-q3" height="500" width="500" style="border: 1px solid grey">
+  </canvas>
+
+  
+  <script>
+
+window.addEventListener("load",run,false);
+
+function run () {
+   // Put calls to your drawing functions for Q1, Q2, Q3 here
+   question1()
+	
+	var q2Canvas = document.getElementById("canvas-q2");
+	var ctx = q2Canvas.getContext("2d");
+
+	// the moves for drawing letter H, for debugging
+	var letterHMoves = ["f",40,
+	    "r",90,
+	    "f",40,
+	    "l",90,
+	    "f",20,
+	    "l",90,
+	    "f",40,
+	    "r",90,
+	    "f",40,
+	    "r",90,
+	    "f",100,
+	    "r",90,
+	    "f",40,
+	    "r",90,
+	    "f",40,
+	    "l",90,
+	    "f",20,
+	    "l",90,
+	    "f",40,
+	    "r",90,
+	    "f",40,
+	    "r",90,
+	    "f",100];
+   draw(ctx, 100, 100, letterHMoves);
+
+	// drawKoch(ctx)
+
+	var q3Canvas = document.getElementById("canvas-q3");
+	var ctx = q3Canvas.getContext("2d");
+	animateKoch(ctx)
+}
+
+
+/************************************************************
+ *
+ * Question 1
+ * 
+ ************************************************************/
+function question1(){
+	var q1Canvas = document.getElementById("canvas-q1");
+	
+	var ctx = q1Canvas.getContext("2d");
+
+	var grd = ctx.createLinearGradient(0,-100,0,800);
+	grd.addColorStop(0,"blue");
+	grd.addColorStop(1,"white");
+	ctx.fillStyle = grd;
+	ctx.fillRect(0,0,500,500);
+
+	ctx.fillStyle = "#CCCCCC";
+	ctx.fillRect(150,100,150,400);
+	ctx.strokeRect(150,100,150,400);
+
+
+	ctx.beginPath();
+	ctx.moveTo(300, 100);
+	ctx.lineTo(350, 170);
+	ctx.lineTo(350, 500);
+	ctx.lineTo(300, 500);
+	ctx.lineTo(300, 100);
+	ctx.stroke();
+	ctx.fill();
+
+	ctx.fillStyle = "#03aacc"
+	for (var i = 0; i < 5; i++) {
+		for (var j = 0; j < 10; j++) { 
+			ctx.fillRect(150 + 10 + (i * 27), 100 + 10 + (j * 51), 20, 40)
+		}
+	}
+}
+
+/************************************************************
+ *
+ * Question 2
+ * 
+ ************************************************************/
+
+
+function draw(ctxt,x,y,moves) {
+	penState = "down";
+	currentX = x;
+	currentY = y;
+	currentAngle = 0;
+
+	ctxt.beginPath();
+	ctxt.moveTo(currentX, currentY);
+	
+	for (var i = 0; i < moves.length; i+=2) {
+		if(moves[i] == "f"){
+			currentX = currentX + (Math.cos((Math.PI / 180) * currentAngle) * moves[i+1])
+			currentY = currentY + (Math.sin((Math.PI / 180) * currentAngle) * moves[i+1])
+			if(penState == "down"){
+				ctxt.lineTo(currentX, currentY);
+			}else{
+				ctxt.moveTo(currentX, currentY);
+			}
+		}else if(moves[i] == "l"){
+			currentAngle -= moves[i+1];
+		}else if(moves[i] == "r"){
+			currentAngle += moves[i+1];
+		}else if(moves[i] == "pu"){
+			penState = "up"
+			i--
+		}else if(moves[i] == "pd"){
+			penState = "down"
+		}
+	}
+	ctxt.stroke();
+}
+
+function animateDraw(ctxt,x,y,moves, rate) {
+	penState = "down";
+	currentX = x;
+	currentY = y;
+	currentAngle = 0;
+
+	ctxt.beginPath();
+	ctxt.moveTo(currentX, currentY);
+
+	var i = 0;
+	var drawCount = 0;
+	setInterval(function () {
+		if(moves[i] == "f"){
+			currentX = currentX + (Math.cos((Math.PI / 180) * currentAngle) * moves[i+1])
+			currentY = currentY + (Math.sin((Math.PI / 180) * currentAngle) * moves[i+1])
+			if(penState == "down"){
+				ctxt.lineTo(currentX, currentY);
+			}else{
+				ctxt.moveTo(currentX, currentY);
+			}
+		}else if(moves[i] == "l"){
+			currentAngle -= moves[i+1];
+		}else if(moves[i] == "r"){
+			currentAngle += moves[i+1];
+		}else if(moves[i] == "pu"){
+			penState = "up"
+			i--
+		}else if(moves[i] == "pd"){
+			penState = "down"
+		}
+		ctxt.stroke();
+		i = i + 1
+
+		if(i == moves.length){
+			i = 0; 
+			drawCount = drawCount + 1;
+			if(drawCount == 3){
+				ctxt.fillStyle = "#FFFFFF";
+				ctxt.fillRect(0, 0, 500, 500);
+				drawCount = 0;
+				ctxt.beginPath();
+				ctxt.moveTo(currentX, currentY);
+			}
+		}
+	}, 1)
+}
+
+function drawKoch(ctx){
+	var koch_set = "frfrf"
+	var iterations = 8
+	kochDirection = []
+
+	for (var i = 0; i < iterations; i++) {
+		koch_set = koch_set.replace(/f/g, "flfrflf")
+	}
+
+    
+    for (var i = 0; i < koch_set.length; i++) {
+    	if(koch_set[i] == "f"){
+    		kochDirection.push("f");
+    		kochDirection.push(100.0 / Math.pow(3, (iterations - 1)));
+    	}else if(koch_set[i] == "l"){
+    		kochDirection.push("l");
+    		kochDirection.push(60);
+    	}else if(koch_set[i] == "r"){
+    		kochDirection.push("r");
+    		kochDirection.push(120);
+    	}
+    }
+    draw(ctx, 100, 100, kochDirection)
+}
+
+/************************************************************
+ *
+ * Question 3
+ * 
+ ************************************************************/
+function animateKoch(ctx){
+	var koch_set = "frfrf"
+	var iterations = 3
+	kochDirection = []
+
+	for (var i = 0; i < iterations; i++) {
+		koch_set = koch_set.replace(/f/g, "flfrflf")
+	}
+
+    
+    for (var i = 0; i < koch_set.length; i++) {
+    	if(koch_set[i] == "f"){
+    		kochDirection.push("f");
+    		kochDirection.push(70.0 / Math.pow(3, (iterations - 1)));
+    	}else if(koch_set[i] == "l"){
+    		kochDirection.push("l");
+    		kochDirection.push(60);
+    	}else if(koch_set[i] == "r"){
+    		kochDirection.push("r");
+    		kochDirection.push(120);
+    	}
+    }
+
+    animateDraw(ctx, 250, 250, kochDirection);
+    // draw(ctx, 100, 100, kochDirection)
+}
+
+  </script>
+
+</body>  
+
+</html>
