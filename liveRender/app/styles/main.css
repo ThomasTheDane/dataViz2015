@@ -5954,225 +5954,48 @@ td.visible-print {
     display: none !important;
   }
 }
-html,
-body {
-  height: 100%;
-  width: 100%;
-  font-style: lato;
-}
-.vert-text {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-}
-.vert-text h1 {
-  padding: 0;
-  margin: 0;
-  font-size: 5.5em;
-  color: white;
-  font-weight: 700;
-}
-.vert-text h3 {
-  padding: 10px;
-  font-size: 4;
-  font-weight: 700;
-}
-#sidebar-wrapper {
-  margin-right: -250px;
-  right: 0;
-  width: 250px;
-  background: #000;
-  position: fixed;
-  height: 100%;
-  overflow-y: auto;
-  z-index: 1000;
-  -webkit-transition: all 0.4s ease 0s;
-  -moz-transition: all 0.4s ease 0s;
-  -ms-transition: all 0.4s ease 0s;
-  -o-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
-}
-.sidebar-nav {
-  position: absolute;
-  top: 0;
-  width: 250px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.sidebar-nav li {
-  line-height: 40px;
-  text-indent: 20px;
-}
-.sidebar-nav li a {
-  color: #999999;
-  display: block;
-  text-decoration: none;
-}
-.sidebar-nav li a:hover {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.2);
-  text-decoration: none;
-}
-.sidebar-nav > .sidebar-brand {
-  height: 55px;
-  line-height: 55px;
-  font-size: 18px;
-}
-.sidebar-nav > .sidebar-brand a {
-  color: #999999;
-}
-.sidebar-nav > .sidebar-brand a:hover {
-  color: #fff;
-  background: none;
-}
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-  text-decoration: none;
-}
-#menu-toggle {
-  top: 0;
-  right: 0;
-  position: fixed;
-  z-index: 1;
-}
-#sidebar-wrapper.active {
-  right: 250px;
-  width: 250px;
-  -webkit-transition: all 0.4s ease 0s;
-  -moz-transition: all 0.4s ease 0s;
-  -ms-transition: all 0.4s ease 0s;
-  -o-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
-}
-.toggle {
-  margin: 5px 5px 0 0;
-}
-.header {
-  display: table;
-  height: 100%;
-  width: 100%;
+#chart {
+  /* NEW */
+  height: 360px;
+  /* NEW */
   position: relative;
-  background: url(../images/bg.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  /* NEW */
+  width: 360px;
+  /* NEW */
 }
-#proficiencies {
-  padding-top: 30px;
-}
-#proficiencies h4 {
-  font-size: 40px;
-  text-align: center;
-}
-#proficiencies h5 {
-  font-size: 30px;
-  text-align: center;
-}
-#proficiencies .language h6 {
-  font-size: 16px;
-}
-#proficiencies .language .image {
-  text-align: center;
-  padding: 0;
-}
-#proficiencies .language .image .logo {
-  height: 110px;
-  margin: 10px;
-}
-#proficiencies .framework h6 {
-  font-size: 16px;
-}
-#proficiencies .framework .image {
-  text-align: center;
-  padding: 0;
-}
-#proficiencies .framework .image .logo {
-  height: 110px;
-  margin: 10px;
-}
-#proficiencies .general h6 {
-  font-size: 16px;
-}
-#proficiencies .general .image {
-  text-align: center;
-  padding: 0;
-}
-#proficiencies .general .image .logo {
-  height: 110px;
-  margin: 10px;
-}
-#projects {
-  margin-top: 100px;
-}
-#projects .row {
-  width: 100%;
-}
-#projects .col-xs-12 {
-  padding: 0;
-}
-#projects .col-md-4 {
+/* NEW */
+.tooltip {
+  /* NEW */
+  background: #eee;
+  /* NEW */
+  box-shadow: 0 0 5px #999999;
+  /* NEW */
+  color: #333;
+  /* NEW */
+  display: none;
+  /* NEW */
+  font-size: 12px;
+  /* NEW */
+  left: 130px;
+  /* NEW */
   padding: 10px;
-  left: 15px;
-}
-#projects h4 {
-  font-size: 40px;
-  text-align: center;
-}
-#projects .project {
-  background-color: blue;
-  width: 100%;
-  position: relative;
-}
-#projects .project .description {
-  width: 100%;
+  /* NEW */
   position: absolute;
-  bottom: 0;
-  background-color: rgba(19, 24, 25, 0.9);
-  color: white;
-  padding-left: 15px;
+  /* NEW */
+  text-align: center;
+  /* NEW */
+  top: 95px;
+  /* NEW */
+  width: 80px;
+  /* NEW */
+  z-index: 10;
+  /* NEW */
 }
-#projects .project .description .text {
-  padding: 10px;
-  list-style: square;
-  font-size: 1.7rem;
+/* NEW */
+.legend {
+  font-size: 12px;
 }
-#projects .project .description .text li {
-  margin: 7px;
-}
-#projects .project .description h1 {
-  font-size: 30px;
-}
-#projects #iphoneArduino {
-  background: url(../images/projects/iphoneArduino.png) no-repeat;
-  background-size: 100% auto;
-}
-#projects #iPhoneApps {
-  background: url(../images/projects/iphoneApps.png) no-repeat;
-  background-size: 100% auto;
-}
-#projects #cdc {
-  background: url(../images/projects/cdc.png) no-repeat;
-  background-size: 100% auto;
-}
-#projects #usTubes {
-  background: url(../images/projects/ourtubes.png) no-repeat;
-  background-size: 100% auto;
-}
-#projects #stabilizedGimbal {
-  background: url(../images/projects/stabilizedGimbal.png) no-repeat;
-  background-size: 100% auto;
-}
-#projects #sortingInAssembly {
-  background: url(../images/projects/sortingInAssembly.png) no-repeat;
-  background-size: 100% auto;
-}
-footer {
-  padding: 100px 0;
-}
-footer .contactRef {
-  width: 100px;
-  margin: 50px;
+rect {
+  stroke-width: 2;
 }
 /*# sourceMappingURL=/styles/main.css.map */
